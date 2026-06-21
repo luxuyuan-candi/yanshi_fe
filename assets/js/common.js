@@ -32,10 +32,16 @@ async function request(path, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers,
-  });
+  let response;
+
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      headers,
+    });
+  } catch (error) {
+    throw new Error("无法连接后端服务，请先启动 FastAPI 服务");
+  }
 
   const data = await response.json().catch(() => ({
     message: "服务返回了无法识别的内容",
@@ -47,4 +53,3 @@ async function request(path, options = {}) {
 
   return data;
 }
-
