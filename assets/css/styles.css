@@ -110,8 +110,8 @@ input {
 }
 
 .brand-mark img {
-  width: 104px;
-  height: 104px;
+  width: 132px;
+  height: 132px;
   object-fit: contain;
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.2));
 }
@@ -163,8 +163,8 @@ input {
 }
 
 .auth-default-card img {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
 }
 
@@ -235,8 +235,8 @@ input {
 }
 
 .field-icon {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   opacity: 0.9;
 }
@@ -316,8 +316,8 @@ input {
 }
 
 .topbar-brand img {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
 }
 
@@ -332,8 +332,8 @@ input {
 }
 
 .topbar-user-icon {
-  width: 54px;
-  height: 54px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -342,8 +342,8 @@ input {
 }
 
 .topbar-user-icon img {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
 }
 
 .user-meta {
@@ -387,8 +387,8 @@ input {
 }
 
 .ghost-button img {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .dashboard {
@@ -446,9 +446,9 @@ input {
 }
 
 .info-card-icon {
-  width: 108px;
-  height: 108px;
-  flex: 0 0 108px;
+  width: 124px;
+  height: 124px;
+  flex: 0 0 124px;
   border-radius: 50%;
   border: 1px solid var(--line);
   display: grid;
@@ -457,8 +457,8 @@ input {
 }
 
 .info-card-icon img {
-  width: 62px;
-  height: 62px;
+  width: 86px;
+  height: 86px;
   object-fit: contain;
 }
 
@@ -530,8 +530,8 @@ input {
 }
 
 .action-item-icon {
-  width: 74px;
-  height: 74px;
+  width: 86px;
+  height: 86px;
   border-radius: 18px;
   display: grid;
   place-items: center;
@@ -540,8 +540,8 @@ input {
 }
 
 .action-item-icon img {
-  width: 36px;
-  height: 36px;
+  width: 52px;
+  height: 52px;
 }
 
 .action-item-title {
