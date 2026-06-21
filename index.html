@@ -9,42 +9,78 @@
   <body class="home-page">
     <div class="shell">
       <header class="topbar">
-        <div>
-          <p class="eyebrow">Yanshi Demo</p>
-          <h1>演示系统首页</h1>
+        <div class="topbar-brand">
+          <img src="./assets/images/icons/transparent/logo.png" alt="演示系统标识" />
+          <div>
+            <p class="eyebrow">Yanshi Demo</p>
+            <h1>演示系统首页</h1>
+          </div>
         </div>
+
         <div class="topbar-actions">
-          <div id="user-meta" class="user-meta"></div>
-          <button id="logout-button" class="secondary-button" type="button">退出登录</button>
+          <div class="topbar-user">
+            <div class="topbar-user-icon">
+              <img src="./assets/images/icons/transparent/user.png" alt="" />
+            </div>
+            <div id="user-meta" class="user-meta"></div>
+            <span id="user-role-badge" class="role-badge">管理员</span>
+          </div>
+
+          <button id="logout-button" class="ghost-button" type="button">
+            <img src="./assets/images/icons/transparent/logout.png" alt="" />
+            <span>退出登录</span>
+          </button>
         </div>
       </header>
 
       <main class="dashboard">
         <section class="welcome-panel">
-          <p class="eyebrow">Welcome</p>
-          <h2 id="welcome-text">正在加载首页信息...</h2>
-          <p class="hero-text">这里是当前项目的首页演示区域，可继续扩展业务模块、看板或快捷入口。</p>
+          <div class="welcome-copy">
+            <p class="eyebrow">Welcome Back</p>
+            <h2 id="welcome-text">正在加载首页信息...</h2>
+            <p class="hero-text">高效、安全、稳定、智能。这里是演示系统的首页工作台，可继续扩展业务入口与概览信息。</p>
+          </div>
         </section>
 
         <section class="card-grid">
           <article class="info-card">
-            <h3>当前用户</h3>
-            <p id="user-name">--</p>
+            <div class="info-card-icon">
+              <img src="./assets/images/icons/transparent/user.png" alt="" />
+            </div>
+            <div class="info-card-copy">
+              <h3>当前用户</h3>
+              <p id="user-name">--</p>
+              <span>系统管理员账户</span>
+            </div>
           </article>
+
           <article class="info-card">
-            <h3>当前角色</h3>
-            <p id="user-role">--</p>
+            <div class="info-card-icon">
+              <img src="./assets/images/icons/transparent/shield.png" alt="" />
+            </div>
+            <div class="info-card-copy">
+              <h3>当前角色</h3>
+              <p id="user-role">--</p>
+              <span>拥有全部系统权限</span>
+            </div>
           </article>
+
           <article class="info-card">
-            <h3>系统状态</h3>
-            <p>本地运行中</p>
+            <div class="info-card-icon">
+              <img src="./assets/images/icons/transparent/monitor.png" alt="" />
+            </div>
+            <div class="info-card-copy">
+              <h3>系统状态</h3>
+              <p>运行正常</p>
+              <span>本地服务连接良好</span>
+            </div>
           </article>
         </section>
 
         <section class="actions-panel">
           <div class="panel-heading">
             <h3>快捷操作</h3>
-            <button id="refresh-button" class="secondary-button" type="button">刷新数据</button>
+            <button id="refresh-button" class="secondary-button panel-button" type="button">刷新数据</button>
           </div>
           <ul id="action-list" class="action-list"></ul>
         </section>
@@ -54,4 +90,3 @@
     <script src="./assets/js/index.js"></script>
   </body>
 </html>
-

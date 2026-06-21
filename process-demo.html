@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>演示系统制作过程</title>
+    <style>
+      :root {
+        --bg: #061b1e;
+        --panel: rgba(8, 31, 35, 0.8);
+        --panel-strong: rgba(12, 40, 45, 0.92);
+        --gold: #efcf82;
+        --gold-soft: rgba(239, 207, 130, 0.2);
+        --text: #f7eedc;
+        --muted: rgba(247, 238, 220, 0.72);
+        --line: rgba(239, 207, 130, 0.22);
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "PingFang SC", "Noto Serif SC", "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          linear-gradient(180deg, rgba(6, 27, 30, 0.88), rgba(6, 27, 30, 0.96)),
+          url("./assets/images/backgrounds/home-bg.png") center / cover fixed no-repeat;
+      }
+
+      .page {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 56px;
+      }
+
+      .hero,
+      .section,
+      .timeline-item,
+      .quote {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+
+      .hero {
+        border-radius: 28px;
+        overflow: hidden;
+        background:
+          linear-gradient(90deg, rgba(255, 246, 223, 0.86) 0%, rgba(255, 246, 223, 0.34) 44%, rgba(255, 246, 223, 0.06) 78%),
+          url("./assets/images/backgrounds/login-bg.png") center / cover no-repeat;
+        color: #6c4b1d;
+        padding: 52px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: #9b7437;
+        font-size: 12px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(36px, 5vw, 64px);
+        line-height: 1.08;
+      }
+
+      .hero p {
+        margin-top: 16px;
+        max-width: 700px;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 28px;
+      }
+
+      .hero-card {
+        padding: 18px 20px;
+        border-radius: 18px;
+        background: rgba(10, 31, 34, 0.72);
+        color: var(--text);
+      }
+
+      .hero-card strong {
+        display: block;
+        color: var(--gold);
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      .hero-card span {
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .section {
+        margin-top: 22px;
+        border-radius: 24px;
+        padding: 28px;
+      }
+
+      .section h2 {
+        font-size: 28px;
+        color: var(--gold);
+        margin-bottom: 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .quote {
+        border-radius: 20px;
+        padding: 18px 20px;
+        background: var(--panel-strong);
+      }
+
+      .quote strong {
+        display: block;
+        margin-bottom: 10px;
+        color: var(--gold);
+        font-size: 15px;
+      }
+
+      .quote p {
+        color: var(--muted);
+        line-height: 1.8;
+        white-space: pre-line;
+      }
+
+      .verbatim {
+        font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+        font-size: 14px;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .timeline-item {
+        border-radius: 20px;
+        padding: 22px;
+      }
+
+      .timeline-item h3 {
+        font-size: 22px;
+        color: #fff3d0;
+        margin-bottom: 10px;
+      }
+
+      .timeline-item p {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .timeline-item ul,
+      .section ul {
+        margin: 14px 0 0;
+        padding-left: 20px;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .assets {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .asset-card {
+        border-radius: 20px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--line);
+      }
+
+      .asset-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+
+      .asset-card div {
+        padding: 16px 18px 18px;
+      }
+
+      .asset-card strong {
+        display: block;
+        color: #fff1cf;
+        margin-bottom: 8px;
+      }
+
+      .asset-card span {
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 14px;
+      }
+
+      .footer {
+        margin-top: 22px;
+        padding: 18px 22px;
+        border-radius: 18px;
+        background: rgba(239, 207, 130, 0.08);
+        border: 1px solid rgba(239, 207, 130, 0.16);
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      @media (max-width: 900px) {
+        .hero,
+        .section {
+          padding: 22px;
+        }
+
+        .hero-grid,
+        .grid,
+        .assets {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">From Prompt To Product</p>
+        <h1>演示系统网页制作过程</h1>
+        <p>
+          本页面将本次对话中的核心文字需求，按照实际推进流程整合为一个可演示的项目过程说明。内容覆盖从最初的页面与仓库要求，到文档产出、前后端实现、本地部署、GitHub 推送、登录问题修复，以及后续 UI 升级与素材生产。
+        </p>
+
+        <div class="hero-grid">
+          <div class="hero-card">
+            <strong>项目范围</strong>
+            <span>PC 网页，包含登录页与首页两个页面。</span>
+          </div>
+          <div class="hero-card">
+            <strong>技术约束</strong>
+            <span>前端为纯 HTML，后端使用 FastAPI，数据库使用本地 SQLite，本地部署运行。</span>
+          </div>
+          <div class="hero-card">
+            <strong>最终目标</strong>
+            <span>完成需求文档、部署文档、代码实现、仓库提交、UI 升级与演示素材整理。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>一、需求原文整理</h2>
+        <div class="grid">
+          <article class="quote">
+            <strong>原文 01</strong>
+            <p class="verbatim">现在我想开发一个PC网页。
+1、前端代码仓库：[luxuyuan-candi/yanshi_fe.git](https://github.com/luxuyuan-candi/yanshi_fe.git)
+2、后端代码仓库：[luxuyuan-candi/yanshi_be.git](https://github.com/luxuyuan-candi/yanshi_be.git)
+3、现在通过对话的方式，我需要先生成一个页面功能的设计MD文档，并保存在后端代码仓库上。</p>
+          </article>
+          <article class="quote">
+            <strong>原文 02</strong>
+            <p class="verbatim">目前这个网页就两个页面，一个登陆和一个首页。</p>
+          </article>
+          <article class="quote">
+            <strong>原文 03</strong>
+            <p class="verbatim">现在需要通过对话方式，生成一个部署MD文件，同样保存在后端代码仓库上。</p>
+          </article>
+          <article class="quote">
+            <strong>原文 04</strong>
+            <p class="verbatim">部署要求：
+1、后端使用 python 的 fastapi。
+2、采用本地部署。
+3、前段只需要 HTML 文件。
+4、数据库采用本地的 sqlite。</p>
+          </article>
+          <article class="quote">
+            <strong>原文 05</strong>
+            <p class="verbatim">现在根据两个MD文档要求，生成前后端代码，并完成提交。</p>
+          </article>
+          <article class="quote">
+            <strong>原文 06</strong>
+            <p class="verbatim">帮我推送到github仓库</p>
+          </article>
+          <article class="quote">
+            <strong>原文 07</strong>
+            <p class="verbatim">刚刚尝试登陆这个网页，发现无法登陆。</p>
+          </article>
+          <article class="quote">
+            <strong>原文 08</strong>
+            <p class="verbatim">现在我想优化的网页的UI。要求如下：
+1、先根据网页内容和功能，保持功能不动的情况下，先用image2生成网页UI的美化参考图。
+2、根据参考图，使用image2生成参考图的背景图。以及图中涉及的图标图，图标生成时候，统一采用黄色的背景图，然后用 [$adobe-photoshop](app://connector_69312da8e4dc81919370cb86fd172b6c) 工具进行图标的扣取，保证图标背景为空。
+3、根据参考图，结合已经生成的背景图和图标，完成每个页面的复刻。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>二、制作产物</h2>
+        <ul>
+          <li>页面功能设计文档：明确登录页与首页的功能结构与接口草案。</li>
+          <li>本地部署文档：明确 FastAPI、本地 HTML、SQLite 的部署方式。</li>
+          <li>后端代码：FastAPI + SQLite 的登录闭环实现。</li>
+          <li>前端代码：登录页、首页、登录态处理、退出逻辑。</li>
+          <li>UI 参考图：用于定义整体视觉风格。</li>
+          <li>背景图与图标素材：用于页面复刻。</li>
+          <li>修复记录：包括 file 协议下登录失败的兼容处理。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>三、UI 升级素材预览</h2>
+        <div class="assets">
+          <article class="asset-card">
+            <img src="./assets/images/reference/login-reference.png" alt="登录页参考图" />
+            <div>
+              <strong>登录页参考图</strong>
+              <span>定义了左右分栏、金色品牌标识、玻璃化登录面板、账号提示卡和暖光质感。</span>
+            </div>
+          </article>
+
+          <article class="asset-card">
+            <img src="./assets/images/reference/home-reference.png" alt="首页参考图" />
+            <div>
+              <strong>首页参考图</strong>
+              <span>定义了顶部品牌区、欢迎横幅、三张状态卡片和快捷操作面板的整体层次。</span>
+            </div>
+          </article>
+
+          <article class="asset-card">
+            <img src="./assets/images/backgrounds/login-bg.png" alt="登录页背景图" />
+            <div>
+              <strong>登录页背景图</strong>
+              <span>拆出独立背景后，可在页面中直接作为氛围层使用，而不是完全依赖 CSS 渐变。</span>
+            </div>
+          </article>
+
+          <article class="asset-card">
+            <img src="./assets/images/backgrounds/home-bg.png" alt="首页背景图" />
+            <div>
+              <strong>首页背景图</strong>
+              <span>用于强化首页的高端展示感，并承接欢迎区和下方卡片内容的视觉节奏。</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>四、最终成果总结</h2>
+        <div class="grid">
+          <article class="quote">
+            <strong>功能层面</strong>
+            <p>两个页面全部打通：
+登录页可提交账号密码并建立登录态；
+首页可读取当前用户信息、加载概览内容并退出登录。</p>
+          </article>
+
+          <article class="quote">
+            <strong>工程层面</strong>
+            <p>文档、代码、提交、GitHub 推送、本地部署说明、问题修复和 UI 升级都已经形成闭环，项目具备继续扩展业务模块的基础。</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="footer">
+        本页为“演示系统网页制作过程”展示文件，可直接用于对外演示本项目从需求沟通到页面落地的完整流程。若继续扩展业务页面、接口、权限、看板或动效，可在此基础上继续追加新的过程章节。
+      </div>
+    </main>
+  </body>
+</html>

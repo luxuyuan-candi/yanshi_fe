@@ -1,5 +1,6 @@
 const welcomeText = document.getElementById("welcome-text");
 const userMeta = document.getElementById("user-meta");
+const userRoleBadge = document.getElementById("user-role-badge");
 const userName = document.getElementById("user-name");
 const userRole = document.getElementById("user-role");
 const actionList = document.getElementById("action-list");
@@ -11,7 +12,11 @@ if (!getToken()) {
 }
 
 function renderUser(user) {
-  userMeta.innerHTML = `<strong>${user.nickname}</strong><br />${user.roleName}`;
+  userMeta.innerHTML = `
+    <span class="user-name-text">${user.nickname}</span>
+    <span class="user-subtext">当前在线用户</span>
+  `;
+  userRoleBadge.textContent = user.roleName;
   userName.textContent = user.nickname;
   userRole.textContent = user.roleName;
 }
@@ -20,7 +25,19 @@ function renderActions(actions) {
   actionList.innerHTML = "";
   actions.forEach((item) => {
     const li = document.createElement("li");
-    li.textContent = item;
+    li.className = "action-item";
+    li.innerHTML = `
+      <div class="action-item-main">
+        <span class="action-item-icon">
+          <img src="./assets/images/icons/transparent/refresh.png" alt="" />
+        </span>
+        <div>
+          <span class="action-item-title">${item}</span>
+          <span class="action-item-subtitle">更新系统最新数据</span>
+        </div>
+      </div>
+      <span class="action-item-arrow">›</span>
+    `;
     actionList.appendChild(li);
   });
 }
